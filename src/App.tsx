@@ -18,12 +18,12 @@ const MainLayout: React.FC = () => {
   const { role } = useApp();
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-emerald-500 selection:text-white">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-800 font-sans selection:bg-emerald-500 selection:text-white w-full overflow-x-hidden">
       {/* Persistent Navigation Header */}
       <Header />
 
       {/* Main Role Content Container */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
         {role === 'citizen' && <CitizenView />}
         {role === 'collector' && <CollectorView />}
         {role === 'admin' && <AdminView />}

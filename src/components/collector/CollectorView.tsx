@@ -65,28 +65,28 @@ export const CollectorView: React.FC = () => {
   return (
     <div className="space-y-6 animate-fade-in pb-12">
       {/* 1. Verified Partner Header */}
-      <div className="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div className="flex items-center space-x-3.5">
-          <div className="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-black text-xl border border-amber-200 shadow-inner">
+      <div className="bg-white rounded-3xl border border-slate-200 p-4 sm:p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center space-x-3 sm:space-x-3.5">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-amber-500/10 text-amber-700 flex items-center justify-center font-black text-lg sm:text-xl border border-amber-200 shadow-inner shrink-0">
             RK
           </div>
           <div>
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <h2 className="font-extrabold text-slate-900 text-lg sm:text-xl">
                 Ramesh Kumar
               </h2>
               <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
-                Verified Kabadiwala Partner
+                Verified Kabadiwala
               </span>
             </div>
             <p className="text-xs text-slate-500 mt-0.5">
-              Ward 4B: Koramangala &bull; Vehicle: Electric Loader #KA-01-EA-4910 &bull; Ayushman ID: PMJAY-88192
+              Ward 4B: Koramangala &bull; Vehicle: Electric Loader #KA-01-EA-4910
             </p>
           </div>
         </div>
 
-        <div className="flex items-center space-x-3 text-right">
-          <div className="bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-2xl text-center">
+        <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+          <div className="bg-slate-50 border border-slate-200 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-center">
             <span className="text-[10px] text-slate-400 block font-bold uppercase tracking-wider">
               Today's Payouts
             </span>
@@ -94,7 +94,7 @@ export const CollectorView: React.FC = () => {
               ₹ 4,320.00
             </span>
           </div>
-          <div className="bg-slate-50 border border-slate-200 px-4 py-2.5 rounded-2xl text-center">
+          <div className="bg-slate-50 border border-slate-200 px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-2xl text-center">
             <span className="text-[10px] text-slate-400 block font-bold uppercase tracking-wider">
               Daily Volume
             </span>

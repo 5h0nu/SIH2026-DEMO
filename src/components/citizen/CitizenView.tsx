@@ -221,10 +221,10 @@ export const CitizenView: React.FC = () => {
                 : 'Certified BLE digital scales, AI scrap grading, standardized rates across India, instant UPI deposit to bank, and traceability into authorized recycling centers.'}
             </p>
 
-            <div className="pt-2 flex flex-wrap gap-3">
+            <div className="pt-2 flex flex-wrap gap-2.5 sm:gap-3">
               <button
                 onClick={() => openBookingModal()}
-                className="px-5 py-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-emerald-400/20 transition flex items-center space-x-2 active:scale-95"
+                className="w-full sm:w-auto px-5 py-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-emerald-400/20 transition flex items-center justify-center space-x-2 active:scale-95"
               >
                 <CalendarPlus className="w-4 h-4" />
                 <span>
@@ -234,18 +234,18 @@ export const CitizenView: React.FC = () => {
 
               <a
                 href="#calculator-section"
-                className="px-4 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 backdrop-blur-sm transition flex items-center space-x-2"
+                className="flex-1 sm:flex-initial px-4 py-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs sm:text-sm border border-white/20 backdrop-blur-sm transition flex items-center justify-center space-x-2 text-center"
               >
                 <Calculator className="w-4 h-4 text-emerald-300" />
-                <span>{language === 'hi' ? 'संभावित कमाई जांचें' : 'Scrap Calculator'}</span>
+                <span>{language === 'hi' ? 'संभावित कमाई' : 'Scrap Calculator'}</span>
               </a>
 
               <a
                 href="#ai-demo-section"
-                className="px-4 py-3 rounded-2xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-200 font-bold text-xs sm:text-sm border border-teal-400/30 transition flex items-center space-x-2"
+                className="flex-1 sm:flex-initial px-4 py-3 rounded-2xl bg-teal-500/20 hover:bg-teal-500/30 text-teal-200 font-bold text-xs sm:text-sm border border-teal-400/30 transition flex items-center justify-center space-x-2 text-center"
               >
                 <ScanLine className="w-4 h-4 text-teal-300" />
-                <span>{language === 'hi' ? 'AI कचरा स्कैनर' : 'AI Scrap Scanner'}</span>
+                <span>{language === 'hi' ? 'AI स्कैनर' : 'AI Scanner'}</span>
               </a>
             </div>
           </div>
@@ -401,9 +401,9 @@ export const CitizenView: React.FC = () => {
           </div>
 
           {/* Stepper with 5 States */}
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 pt-1 text-center text-xs">
+          <div className="flex sm:grid sm:grid-cols-5 gap-2 sm:gap-3 pt-1 text-center text-xs overflow-x-auto no-scrollbar pb-1">
             {/* Step 1: Requested */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center min-w-[95px] flex-1 sm:min-w-0">
               <div className="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs mb-1.5 shadow-sm">
                 <CheckCircle2 className="w-4 h-4" />
               </div>
@@ -413,7 +413,7 @@ export const CitizenView: React.FC = () => {
 
             {/* Step 2: ULB Admin Approval */}
             <div
-              className={`flex flex-col items-center ${
+              className={`flex flex-col items-center min-w-[95px] flex-1 sm:min-w-0 ${
                 activeOrder.status === 'pending_admin_approval' ? '' : ''
               }`}
             >
@@ -441,14 +441,14 @@ export const CitizenView: React.FC = () => {
               </span>
               <span className="text-[10px] text-slate-400">
                 {activeOrder.status === 'pending_admin_approval'
-                  ? 'In Review (Pending)'
-                  : 'Verified & Approved'}
+                  ? 'In Review'
+                  : 'Approved'}
               </span>
             </div>
 
             {/* Step 3: Partner Assigned */}
             <div
-              className={`flex flex-col items-center ${
+              className={`flex flex-col items-center min-w-[95px] flex-1 sm:min-w-0 ${
                 activeOrder.status === 'pending_admin_approval' ? 'opacity-40' : ''
               }`}
             >
@@ -464,12 +464,12 @@ export const CitizenView: React.FC = () => {
                 <Truck className="w-4 h-4" />
               </div>
               <span className="font-bold text-slate-800">3. Partner Assigned</span>
-              <span className="text-[10px] text-slate-400">Ward Kabadiwala</span>
+              <span className="text-[10px] text-slate-400">Kabadiwala</span>
             </div>
 
             {/* Step 4: On The Way */}
             <div
-              className={`flex flex-col items-center ${
+              className={`flex flex-col items-center min-w-[95px] flex-1 sm:min-w-0 ${
                 activeOrder.status === 'on_the_way'
                   ? ''
                   : activeOrder.status === 'weighed_and_paid'
@@ -502,7 +502,7 @@ export const CitizenView: React.FC = () => {
 
             {/* Step 5: Weigh & Pay */}
             <div
-              className={`flex flex-col items-center ${
+              className={`flex flex-col items-center min-w-[95px] flex-1 sm:min-w-0 ${
                 activeOrder.status === 'weighed_and_paid' ? '' : 'opacity-40'
               }`}
             >

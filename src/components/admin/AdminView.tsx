@@ -268,9 +268,9 @@ export const AdminView: React.FC = () => {
       {/* 1. Admin Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-200 pb-5">
         <div>
-          <div className="flex items-center space-x-2">
-            <Building2 className="w-6 h-6 text-emerald-700" />
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight">
+          <div className="flex flex-wrap items-center gap-2">
+            <Building2 className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-700 shrink-0" />
+            <h2 className="text-lg sm:text-2xl font-black text-slate-900 tracking-tight">
               Bruhat Bengaluru Mahanagara Palike (BBMP)
             </h2>
             <span className="text-[10px] font-extrabold bg-blue-100 text-blue-800 px-2.5 py-0.5 rounded-full border border-blue-200">
@@ -282,10 +282,10 @@ export const AdminView: React.FC = () => {
           </p>
         </div>
 
-        <div className="flex items-center space-x-2.5">
+        <div className="flex items-center space-x-2.5 w-full sm:w-auto">
           <button
             onClick={openEprModal}
-            className="px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center space-x-2 shadow-md transition active:scale-95"
+            className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center space-x-2 shadow-md transition active:scale-95"
           >
             <Award className="w-4 h-4 text-amber-400" />
             <span>Generate EPR Credit Certificate</span>

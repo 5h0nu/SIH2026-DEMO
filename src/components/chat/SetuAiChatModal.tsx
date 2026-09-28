@@ -56,8 +56,8 @@ export const SetuAiChatModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-      <div className="bg-white rounded-3xl max-w-lg w-full h-[620px] shadow-2xl border border-slate-200 flex flex-col overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-2.5 sm:p-4 animate-fade-in">
+      <div className="bg-white rounded-3xl max-w-lg w-full h-[88vh] max-h-[640px] shadow-2xl border border-slate-200 flex flex-col overflow-hidden my-auto">
         {/* Chat Header */}
         <div className="p-4 sm:p-5 bg-gradient-to-r from-emerald-800 via-teal-800 to-slate-900 text-white flex items-center justify-between">
           <div className="flex items-center space-x-3">
