@@ -5,15 +5,21 @@ const GROQ_STORAGE_KEY = 'recyclesetu_groq_api_key';
 
 export function getStoredGroqApiKey(): string {
   try {
-    return localStorage.getItem(GROQ_STORAGE_KEY) || '';
+    const envKey = (import.meta as any).env?.VITE_GROQ_API_KEY || '';
+    const stored = localStorage.getItem(GROQ_STORAGE_KEY);
+    return (stored || envKey || '').trim();
   } catch {
-    return '';
+    return ((import.meta as any).env?.VITE_GROQ_API_KEY || '').trim();
   }
 }
 
 export function setStoredGroqApiKey(key: string): void {
   try {
-    localStorage.setItem(GROQ_STORAGE_KEY, key.trim());
+    if (key.trim()) {
+      localStorage.setItem(GROQ_STORAGE_KEY, key.trim());
+    } else {
+      localStorage.removeItem(GROQ_STORAGE_KEY);
+    }
   } catch (e) {
     console.error('Failed to save Groq API key:', e);
   }

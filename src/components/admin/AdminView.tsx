@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import {
   Building2,
@@ -26,7 +26,10 @@ import {
   X,
   Sparkles,
   ExternalLink,
-  QrCode
+  QrCode,
+  Key,
+  RefreshCw,
+  Info
 } from 'lucide-react';
 import {
   Chart as ChartJS,
@@ -55,8 +58,19 @@ export const AdminView: React.FC = () => {
     approveOrder,
     rejectOrder,
     openEprModal,
-    showToast
+    showToast,
+    groqKey,
+    setGroqKey,
+    openGroqModal,
+    refreshDailyRates,
+    isFetchingRates
   } = useApp();
+
+  const [adminGroqInput, setAdminGroqInput] = useState<string>(groqKey);
+
+  useEffect(() => {
+    setAdminGroqInput(groqKey);
+  }, [groqKey]);
 
   const [activeAdminTab, setActiveAdminTab] = useState<AdminTab>('overview');
   const [ledgerSearch, setLedgerSearch] = useState<string>('');
@@ -615,7 +629,88 @@ export const AdminView: React.FC = () => {
 
       {/* TAB 2: MSP FLOOR PRICING & MUNICIPAL SUBSIDY */}
       {activeAdminTab === 'pricing' && (
-        <div className="bg-white rounded-3xl border border-slate-200 p-6 space-y-5">
+        <div className="space-y-6">
+          {/* Global Groq AI API Key Controller */}
+          <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white rounded-3xl p-5 sm:p-6 shadow-md border border-slate-700/80 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-700 pb-3">
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-2xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-400 shadow-inner shrink-0">
+                  <Key className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="font-extrabold text-base tracking-tight">
+                      Global Groq AI API Key Integration
+                    </h3>
+                    <span
+                      className={`text-[10px] font-black px-2.5 py-0.5 rounded-full border ${
+                        groqKey
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-400/30'
+                          : 'bg-amber-500/20 text-amber-300 border-amber-400/30'
+                      }`}
+                    >
+                      {groqKey ? 'Llama 3.3 Active' : 'Edge Simulation Fallback'}
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-300 mt-0.5">
+                    Powers live Indian Mandi spot prices, Computer Vision scrap grading, and SetuAI chatbot for all residents &amp; collectors.
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={openGroqModal}
+                className="self-start sm:self-auto text-xs text-emerald-400 hover:text-emerald-300 underline font-bold"
+              >
+                Advanced Settings &rarr;
+              </button>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+              <div className="relative flex-1">
+                <input
+                  type="password"
+                  value={adminGroqInput}
+                  onChange={e => setAdminGroqInput(e.target.value)}
+                  placeholder="Enter Groq API Key (gsk_...)"
+                  className="w-full bg-slate-950/80 border border-slate-700 focus:border-emerald-400 rounded-xl px-3.5 py-2.5 text-xs text-white placeholder-slate-500 outline-none font-mono"
+                />
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => {
+                    setGroqKey(adminGroqInput);
+                    showToast('Groq API Key saved successfully!', 'success');
+                  }}
+                  className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs transition shadow active:scale-95"
+                >
+                  Save Key
+                </button>
+
+                <button
+                  onClick={async () => {
+                    setGroqKey(adminGroqInput);
+                    await refreshDailyRates();
+                  }}
+                  disabled={isFetchingRates}
+                  className="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-300 border border-slate-600 font-bold text-xs transition flex items-center justify-center space-x-1.5 disabled:opacity-50"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 ${isFetchingRates ? 'animate-spin' : ''}`} />
+                  <span>{isFetchingRates ? 'Testing...' : 'Test & Sync'}</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-2 text-[11px] text-slate-400 bg-black/30 p-2.5 rounded-xl border border-white/5">
+              <Info className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+              <span>
+                <strong>Shared For All Users:</strong> Saving in <code className="text-emerald-300 bg-white/10 px-1 py-0.5 rounded">.env</code> as <code className="text-emerald-300 bg-white/10 px-1 py-0.5 rounded">VITE_GROQ_API_KEY</code> embeds this key into the build so every visitor on phone or PC uses live Groq AI automatically.
+              </span>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-3xl border border-slate-200 p-6 space-y-5">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
             <div>
               <div className="flex items-center space-x-2">
@@ -680,7 +775,8 @@ export const AdminView: React.FC = () => {
             })}
           </div>
         </div>
-      )}
+      </div>
+    )}
 
       {/* TAB 3: WARD SEGREGATION & CONTAMINATION HEATMAP */}
       {activeAdminTab === 'wards' && (
